@@ -102,3 +102,48 @@ class Appointment:
             f"date_time={self.date_time}, "
             f"status='{self._status.value}')"
         )
+
+
+#G)
+if __name__ == "__main__":
+
+    print("TEST 1: Create valid objects")
+
+    patient = Patient("P001", "Sarah Smith")
+
+    practitioner = Practitioner(
+        "PR001",
+        "Dr John Lee",
+        "General Practice"
+    )
+
+    appointment = Appointment(
+        "A001",
+        patient,
+        practitioner,
+        datetime(2026, 10, 10, 10, 30)
+    )
+
+    print(patient)
+    print(practitioner)
+    print(appointment)
+
+    print("\nTEST 2: Cancel scheduled appointment")
+
+    appointment.cancel()
+
+    print("Appointment status:", appointment.status.value)
+
+    print("\nTEST 3: Attempt repeated cancellation")
+
+    try:
+        appointment.cancel()
+    except ValueError as error:
+        print("Expected error:", error)
+
+    print("\nTEST 4: Invalid patient")
+
+    try:
+        Patient("", "")
+    except ValueError as error:
+        print("Expected error:", error)
