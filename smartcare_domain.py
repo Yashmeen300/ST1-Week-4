@@ -1,3 +1,4 @@
+#AI OFF
 class Patient:
     def __init__(self, patient_id: str, name: str) -> None:
         if not patient_id.strip():
